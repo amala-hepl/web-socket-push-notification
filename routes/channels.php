@@ -20,6 +20,6 @@ use Illuminate\Support\Facades\Log;
 
 Broadcast::channel('role.1.notifications', function ($user) {
     // Allow only admins
-    return (int) ($user->role ?? $user->role ?? 0) === 1;
-    Log::info('Checking if user is admin', ['user' => $user]);
+    Log::info('Checking if user is admin', ['user' => $user, 'role' => $user->role ?? 'no role']);
+    return (int) ($user->role ?? 0) === 1;
 });

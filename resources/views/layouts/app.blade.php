@@ -94,7 +94,6 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-  @vite(['resources/js/app.js']) {{-- app.js imports bootstrap.js, and can import admin-notify.js conditionally --}}
 </head>
 <body>
     <div id="app">
@@ -158,23 +157,13 @@
     </div>
   @auth
     @if(auth()->user()->role === 1)
-      @vite(['resources/js/admin-notify.js'])
+        @vite(['resources/js/admin-notify.js'])
         <script>
-            import Echo from 'laravel-echo';
-            alert('Welcome Admin!'); // Optional: Alert for admin users
-            // Initialize Echo for admin notifications
-            window.Echo.private('role.1.notifications')
-                .listen('.UserCreatedRecently', (e) => {
-                    
-                    // e contains: id, name, email, created_at, message
-                    // Show however you want; example:
-                    alert(e.message + " (created at: " + e.created_at + ")");
-                });
+            // Admin welcome message
+            console.log('Welcome Admin!');
         </script>
     @else
         <script src="{{ asset('pro_js/jquery_3.7.1.min.js') }}"></script>
-
-
     @endif
   @endauth
 </body>
